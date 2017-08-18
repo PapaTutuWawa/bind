@@ -1,0 +1,18 @@
+#!/bin/sh
+
+if [ ! -d /srv/internal/bind ]; then
+   echo "/srv/internal/bind not found... Creating it!"
+   mkdir -p /srv/internal/bind
+   mkdir /srv/internal/bind/zones
+   mkdir /srv/internal/bind/config
+fi
+
+docker run \
+       --net=production-base \
+       --ip=240.1.0.2 \
+       --volume=/srv/internal/bind/zones/:/var/named/:ro \
+       --volume=/srv/internal/bind/config/named.conf:/etc/bind/named.conf:ro \
+       --name=bind \
+       --read-only \
+       --rm \
+       bind
