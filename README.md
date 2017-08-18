@@ -11,4 +11,5 @@ and ```/srv/internal/bind/config/named.conf``` to ```/etc/bind/named.conf``` in 
 In addition to that, the script will use the network *production-base* with the IP *240.1.0.2* for the
 container.
 
-For safety reasons, the container will have a read-only mounted rootfs.
+For safety reasons, the container will have a read-only mounted rootfs. The nameserver will be started
+without IPv6 (For security???).
